@@ -5,15 +5,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" onKeyPressed="#AnchorKey" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.HelloController">
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" onKeyPressed="#AnchorKeyOne" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.HelloController">
    <children>
       <Label layoutX="199.0" layoutY="229.0" rotate="90.0" text="....................................." textFill="WHITE" AnchorPane.leftAnchor="196.0" AnchorPane.topAnchor="231.0">
          <font>
             <Font name="Arial" size="92.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="630.0" layoutY="350.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: red;" textOverrun="CLIP" />
-      <Button fx:id="leftButton" layoutX="80.0" layoutY="260.0" maxHeight="200.0" maxWidth="19.0" minHeight="200.0" minWidth="19.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="19.0" AnchorPane.leftAnchor="35.0" />
-      <Button fx:id="rightButton" layoutX="1225.0" layoutY="260.0" maxHeight="200.0" maxWidth="19.0" minHeight="200.0" minWidth="19.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="19.0" AnchorPane.rightAnchor="35.0" />
+      <Label fx:id="leftScore" layoutX="554.0" layoutY="41.0" text="0" textFill="WHITE">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="rightScore" layoutX="695.0" layoutY="41.0" text="0" textFill="WHITE">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="ball" alignment="CENTER" layoutX="630.0" layoutY="350.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: red;" textOverrun="CLIP" />
+      <Button fx:id="leftButton" layoutX="80.0" layoutY="260.0" maxHeight="200.0" maxWidth="19.0" minHeight="200.0" minWidth="19.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="19.0" style="-fx-background-color: blue;" AnchorPane.leftAnchor="35.0" />
+      <Button fx:id="rightButton" layoutX="1225.0" layoutY="260.0" maxHeight="200.0" maxWidth="19.0" minHeight="200.0" minWidth="19.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="19.0" style="-fx-background-color: red;" AnchorPane.rightAnchor="35.0" />
+      <Button fx:id="startGame" layoutX="554.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#startGameButton" text="Начать игру!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label fx:id="leftWin" layoutX="482.0" layoutY="242.0" onMouseClicked="#startGameButton" style="-fx-background-color: black;" textFill="#4000ff">
+         <font>
+            <Font name="Onyx" size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="rightWin" layoutX="473.0" layoutY="242.0" onMouseClicked="#startGameButton" style="-fx-background-color: black;" textFill="RED">
+         <font>
+            <Font name="Onyx" size="33.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
