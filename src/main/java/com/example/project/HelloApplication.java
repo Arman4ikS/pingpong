@@ -1,18 +1,24 @@
 package com.example.project;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
+    public static final int width = 1280;
+    public static final int height = 720;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage.setTitle("Ping pong");
+        Scene scene = new Scene(root, width, height);
         stage.setScene(scene);
         stage.show();
     }
