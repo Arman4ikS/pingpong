@@ -36,29 +36,33 @@ public class HelloController extends Application {
     private double playerTwoXPos = width - PLAYER_WIDTH - playerOneXPos;
 
     public void start(Stage stage) throws Exception {
-        stage.setTitle("P O N G");
+        stage.setTitle("P O G C H A M P");
         //background size
         Canvas canvas = new Canvas(width, height);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //JavaFX Timeline = free form animation defined by KeyFrames and their duration
-        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
+        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc, canvas)));
         //number of cycles in animation INDEFINITE = repeat indefinitely
         tl.setCycleCount(Timeline.INDEFINITE);
 
-        //mouse control (move and click)
-        canvas.setOnMouseMoved(e ->  playerOneYPos = e.getY() - PLAYER_HEIGHT/2);
+
         canvas.setOnMouseClicked(e ->  gameStarted = true);
         stage.setScene(new Scene(new StackPane(canvas)));
         stage.show();
         tl.play();
     }
 
-    private void run(GraphicsContext gc) {
+    private void run(GraphicsContext gc, Canvas canvas) {
         //set graphics
         //set background color
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, width, height);
+
+        canvas.setOnMouseMoved(e ->  YPos = e.getY() - PLAYER_HEIGHT/2);
+        if ((YPos > 0)&&(YPos  < height- PLAYER_HEIGHT))
+            playerOneYPos = YPos;
+        //mouse control (move and click)
 
         //set text
         gc.setFill(Color.WHITE);
@@ -82,7 +86,7 @@ public class HelloController extends Application {
             //set the start text
             gc.setStroke(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.strokeText("Click", width / 2, height / 2);
+            gc.strokeText("Click", width / 4, height / 2);
 
             //reset the ball start position
             ballXPos = width / 2;
@@ -124,6 +128,12 @@ public class HelloController extends Application {
         gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
         gc.fillRect(35, 10, 930, 10);
         gc.fillRect(35, 580, 930, 10);
+
+        int j = 10;
+        for (int i = 0; i < 20; i++){
+            gc.fillRect(width/2, j, 10, 10);
+            j+= 30;
+        }
     }
 
     // start the application

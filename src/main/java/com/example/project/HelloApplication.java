@@ -16,7 +16,6 @@ public class HelloApplication extends Application {
     public static final int height = 600;
     @Override
     public void start(Stage stage) throws IOException {
-
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage.setTitle("Ping pong");
         Scene scene = new Scene(root, width, height);
