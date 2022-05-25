@@ -7,10 +7,10 @@
 
 <AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.HelloController">
    <children>
-      <Button fx:id="leftButton" layoutX="37.0" layoutY="200.0" maxHeight="200.0" maxWidth="25.0" minHeight="96.0" minWidth="19.0" mnemonicParsing="false" onMouseDragged="#left1" prefHeight="200.0" prefWidth="9.0" style="-fx-background-color: white;" />
-      <Button fx:id="rightButton" layoutX="748.0" layoutY="200.0" maxHeight="200.0" maxWidth="25.0" minHeight="200.0" minWidth="19.0" mnemonicParsing="false" onMouseDragged="#right1" prefHeight="200.0" prefWidth="19.0" style="-fx-background-color: white;" />
+      <Button fx:id="leftButton" layoutX="37.0" layoutY="200.0" maxHeight="200.0" maxWidth="25.0" minHeight="96.0" minWidth="19.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="9.0" style="-fx-background-color: white;" />
+      <Button fx:id="rightButton" layoutX="748.0" layoutY="200.0" maxHeight="200.0" maxWidth="25.0" minHeight="200.0" minWidth="19.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="19.0" style="-fx-background-color: white;" />
       <Circle fx:id="circ" fill="WHITE" layoutX="399.0" layoutY="301.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="startButton" layoutX="350.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#start" text="Начать игру!">
+      <Button fx:id="startButton" layoutX="350.0" layoutY="26.0" mnemonicParsing="false" text="Начать игру!">
          <font>
             <Font size="14.0" />
          </font>
