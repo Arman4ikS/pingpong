@@ -1,9 +1,6 @@
 package com.example.project;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 public class MenuController {
@@ -13,10 +10,12 @@ public class MenuController {
     Button startButton2P;
 
     public void start1P() throws Exception{
-
+        Stage stage = (Stage) startButton1P.getScene().getWindow();
+        new OnePlayerController().start(stage);
     }
     public void start2P() throws Exception{
-
+        Stage stage = (Stage) startButton2P.getScene().getWindow();
+        new TwoPlayersController().start(stage);
     }
 
 }
