@@ -21,8 +21,6 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(root, width, height);
         stage.setScene(scene);
         stage.show();
-
-
     }
 
 

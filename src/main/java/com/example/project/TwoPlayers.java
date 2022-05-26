@@ -13,10 +13,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.input.KeyEvent;
+import javafx.event.EventHandler;
 
-public class HelloController extends Application {
+public class TwoPlayers extends Application {
 
-    //variable
     private static final int width = 1000;
     private static final int height = 600;
     private static final int PLAYER_HEIGHT = 100;
@@ -25,7 +26,10 @@ public class HelloController extends Application {
     private int ballYSpeed = 3;
     private int ballXSpeed = 3;
     private double playerOneYPos = height / 2;
-    private double YPos = height / 2;
+    private boolean isGoingUpPlayerOne = false;
+    private boolean isGoingDownPlayerOne = false;
+    private boolean isGoingUpPlayerTwo = false;
+    private boolean isGoingDownPlayerTwo = false;
     private double playerTwoYPos = height / 2;
     private double ballXPos = width / 2;
     private double ballYPos = height / 2;
@@ -34,10 +38,9 @@ public class HelloController extends Application {
     private boolean gameStarted;
     private int playerOneXPos = 10;
     private double playerTwoXPos = width - PLAYER_WIDTH - playerOneXPos;
+    private int speed = 7;
 
-    public HelloController (){
 
-    }
 
     public void start(Stage stage) throws Exception {
         stage.setTitle("P O G C H A M P");
@@ -46,26 +49,67 @@ public class HelloController extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //JavaFX Timeline = free form animation defined by KeyFrames and their duration
-        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc, canvas)));
+        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
         //number of cycles in animation INDEFINITE = repeat indefinitely
         tl.setCycleCount(Timeline.INDEFINITE);
 
+
         canvas.setOnMouseClicked(e ->  gameStarted = true);
         stage.setScene(new Scene(new StackPane(canvas)));
+        stage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent ke) {
+                switch (ke.getCode()){
+                    case W:
+                        isGoingUpPlayerOne = true;
+                        isGoingDownPlayerOne = false;
+                        break;
+                    case S:
+                        isGoingDownPlayerOne = true;
+                        isGoingUpPlayerOne = false;
+                        break;
+                    case O:
+                        isGoingUpPlayerTwo = true;
+                        isGoingDownPlayerTwo = false;
+                        break;
+                    case L:
+                        isGoingDownPlayerTwo = true;
+                        isGoingUpPlayerTwo = false;
+                        break;
+                }
+            }
+        });
+        stage.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent ke) {
+                switch (ke.getCode()){
+                    case W:
+                        isGoingUpPlayerOne = false;
+                        break;
+                    case S:
+                        isGoingDownPlayerOne = false;
+                        break;
+                    case O:
+                        isGoingUpPlayerTwo = false;
+                        break;
+                    case L:
+                        isGoingDownPlayerTwo = false;
+                        break;
+                }
+            }
+        });
         stage.show();
         tl.play();
     }
 
-    private void run(GraphicsContext gc, Canvas canvas) {
+    private void run(GraphicsContext gc) {
         //set graphics
         //set background color
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, width, height);
 
-        canvas.setOnMouseMoved(e ->  YPos = e.getY() - PLAYER_HEIGHT/2);
-        if ((YPos > 0)&&(YPos  < height- PLAYER_HEIGHT))
-            playerOneYPos = YPos;
-        //mouse control (move and click)
+        if ((isGoingUpPlayerOne)&&(playerOneYPos > 0)) playerOneYPos -= speed;
+        if ((isGoingDownPlayerOne)&&(playerOneYPos + PLAYER_HEIGHT < height)) playerOneYPos += speed;
+        if ((isGoingUpPlayerTwo)&&(playerTwoYPos > 0)) playerTwoYPos -= speed;
+        if ((isGoingDownPlayerTwo)&&(playerTwoYPos + PLAYER_HEIGHT < height)) playerTwoYPos += speed;
 
         //set text
         gc.setFill(Color.WHITE);
@@ -76,11 +120,6 @@ public class HelloController extends Application {
             //set ball movement
             ballXPos+=ballXSpeed;
             ballYPos+=ballYSpeed;
-
-            if ((ballYPos > 0)&&(ballYPos < height-PLAYER_HEIGHT)){
-                if (ballYPos >= playerTwoYPos) playerTwoYPos+=5;
-                if (ballYPos < playerTwoYPos) playerTwoYPos-=5;
-            }
 
             //draw the ball
             gc.fillOval(ballXPos, ballYPos, BALL_R, BALL_R);
@@ -139,8 +178,11 @@ public class HelloController extends Application {
         }
     }
 
+
     // start the application
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
